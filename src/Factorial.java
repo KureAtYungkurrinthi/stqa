@@ -22,9 +22,9 @@ public class Factorial {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        boolean isContinue;
 
-        boolean ifContinue = true;
-        while (ifContinue) {
+        do {
             System.out.print("Enter an integer: ");
             int n = scanner.nextInt();
             try {
@@ -35,9 +35,7 @@ public class Factorial {
 
             System.out.print("Another factorial? (y/n): ");
             char c = scanner.next().charAt(0);
-            if (c == 'n' || c == 'N') {
-                ifContinue = false;
-            }
-        }
+            isContinue = c == 'y' || c == 'Y';
+        } while (isContinue);
     }
 }

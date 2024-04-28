@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CupTest {
     Cup cup;
@@ -19,8 +20,8 @@ class CupTest {
     @ValueSource(ints = {-1, 0})
     @DisplayName("Test constructor exception")
     void constructorException(int capacity) {
-        assertThrows(IllegalArgumentException.class,
-                () -> cup = new Cup(capacity));
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> cup = new Cup(capacity));
+        assertEquals("Capacity must be positive", exception.getMessage());
     }
 
     @ParameterizedTest
@@ -35,8 +36,8 @@ class CupTest {
     @ValueSource(ints = {-1, 11})
     @DisplayName("Test fill exception")
     void fillException(int volume) {
-        assertThrows(IllegalArgumentException.class,
-                () -> cup.fill(volume));
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> cup.fill(volume));
+        assertEquals(volume < 0 ? "Amount must be non-negative" : "Exceeds cup capacity", exception.getMessage());
     }
 
     @ParameterizedTest

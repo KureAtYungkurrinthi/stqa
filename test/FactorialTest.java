@@ -3,7 +3,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class FactorialTest {
 
@@ -32,36 +33,13 @@ class FactorialTest {
         assertEquals(expected, Factorial.factorial(n));
     }
 
-    @DisplayName("Test factorial for negative numbers")
+    @DisplayName("Test factorial for negative numbers or numbers greater than 16")
     @ParameterizedTest
-    @CsvSource({
-            "-1",
-            "-2",
-            "-3",
-            "-4",
-            "-5",
-            "-6",
-            "-7",
-            "-8",
-            "-9",
-            "-10",
-    })
-    void factorialNegative(int n) {
+    @CsvSource({"-1", "-2", "-3", "-4", "-5", "-6", "-7", "-8", "-9", "-10", "17", "18", "19", "20",})
+    void factorialException(int n) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> Factorial.factorial(n));
-        assertEquals("Factorial is undefined for negative integers", exception.getMessage());
+        assertEquals(n > 16 ? "Factorial(" + n + ") is too large - overflow occurs!" : "Factorial is undefined for negative integers", exception.getMessage());
     }
-
-    @DisplayName("Test factorial for numbers greater than 16")
-    @ParameterizedTest
-    @CsvSource({
-            "17",
-            "18",
-            "19",
-            "20",
-    })
-    void factorialOverflow(int n) {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> Factorial.factorial(n));
-        assertEquals("Factorial(" + n + ") is too large - overflow occurs!", exception.getMessage());    }
 
     @Test
     void main() {
