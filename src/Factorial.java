@@ -33,7 +33,7 @@ public class Factorial {
                 System.out.println(e);
             }
 
-            System.out.print("nother factorial? (y/n): ");
+            System.out.print("Another factorial? (y/n): ");
             char c = scanner.next().charAt(0);
             if (c == 'n' || c == 'N') {
                 ifContinue = false;
