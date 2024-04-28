@@ -9,5 +9,6 @@ public class Max3 {
      */
     public static int max3(int num1, int num2, int num3) {
         return -1;
+
     }
 }
