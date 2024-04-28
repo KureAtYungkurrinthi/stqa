@@ -26,7 +26,7 @@ class Max3Test {
     @Test
     @DisplayName("Test max3 with 3 mixed ordered numbers")
     void max3Order() {
-        assertEquals(7, Max3.max3(7, 11, 5));
+        assertEquals(7, Max3.max3(5, 7, 3));
     }
 
     @Test
