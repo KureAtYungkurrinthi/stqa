@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class FactorialTest {
 
-    @DisplayName("Test factorial between 0 and 16")
+    @DisplayName("Test factorial between 0 and 12")
     @ParameterizedTest
     @CsvSource({
             "0, 1",
@@ -29,10 +29,6 @@ class FactorialTest {
             "10, 3628800",
             "11, 39916800",
             "12, 479001600",
-            "13, 1932053504",
-            "14, 1278945280",
-            "15, 2004310016",
-            "16, 2004189184",
     })
     void factorial(int n, int expected) {
         assertEquals(expected, Factorial.factorial(n));
@@ -40,10 +36,10 @@ class FactorialTest {
 
     @DisplayName("Test factorial exception for numbers in undefined range")
     @ParameterizedTest
-    @CsvSource({"-1", "-2", "-3", "-4", "-5", "-6", "-7", "-8", "-9", "-10", "17", "18", "19", "20",})
+    @CsvSource({"-1", "-2", "-3", "-4", "-5", "-6", "-7", "-8", "-9", "-10", "13", "14", "15", "16", "17", "18", "19", "20",})
     void factorialException(int n) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> Factorial.factorial(n));
-        assertEquals(n > 16 ? "Factorial(" + n + ") is too large - overflow occurs!" : "Factorial is undefined for negative integers", exception.getMessage());
+        assertEquals(n > 12 ? "Factorial(" + n + ") is too large - overflow occurs!" : "Factorial is undefined for negative integers", exception.getMessage());
     }
 
     @Test

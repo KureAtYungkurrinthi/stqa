@@ -10,7 +10,7 @@ public class Factorial {
     public static int factorial(int n) throws IllegalArgumentException {
         if (n < 0) {
             throw new IllegalArgumentException("Factorial is undefined for negative integers");
-        } else if (n > 16) {
+        } else if (n > 12) {
             throw new IllegalArgumentException("Factorial(" + n + ") is too large - overflow occurs!");
         } else {
             int fact = 1;
