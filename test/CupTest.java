@@ -64,7 +64,7 @@ class CupTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 5, 7})
+    @ValueSource(ints = {2, 3, 5, 7, 10})
     @DisplayName("Test isFull method")
     void isFull(int volume) {
         cup.fill(volume);

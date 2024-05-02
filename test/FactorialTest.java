@@ -44,7 +44,7 @@ class FactorialTest {
 
     @Test
     void main() {
-        InputStream in = new ByteArrayInputStream("5\ny\n-2\ny\n25\ny\n8\nn\n".getBytes());
+        InputStream in = new ByteArrayInputStream("5\ny\n-2\nY\n25\ny\n8\nn\n".getBytes());
         System.setIn(in);
 
         ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
