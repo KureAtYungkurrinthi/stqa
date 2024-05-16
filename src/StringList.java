@@ -74,6 +74,63 @@ public class StringList {
     }
 
     /**
+     * Checks to see if the given element is in this list.
+     *
+     * @param element the element to check
+     * @return true if this list contains the specified element, false otherwise
+     */
+    public boolean contains(String element) {
+        for (int i = 0; i < size; i++) {
+            if (elementData[i].equals(element)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
+     *
+     * @param element the element to search for
+     * @return the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
+     */
+    public int indexOf(String element) {
+        for (int i = 0; i < size; i++) {
+            if (elementData[i].equals(element)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Replaces the element at the specified position in this list with the specified element.
+     *
+     * @param index index of the element to replace
+     * @param element element to be stored at the specified position
+     * @return the element previously at the specified position
+     * @throws IllegalArgumentException if the index is invalid
+     */
+    public String set(int index, String element) {
+        if (index >= size) {
+            throw new IllegalArgumentException("Invalid index: " + index);
+        } else {
+            String temp = elementData[index];
+            elementData[index] = element;
+            return temp;
+        }
+    }
+
+    /**
+     * Returns the number of elements in the list.
+     *
+     * @return the number of elements in the list
+     */
+    public int size() {
+        return size;
+    }
+
+    /**
      * Returns a formatted String of the elements in the list.
      *
      * @return a formatted String of the elements in the list
