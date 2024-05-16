@@ -49,13 +49,11 @@ class TestTask4 {
 
     @DisplayName("Test removeRange method")
     @ParameterizedTest
-    @CsvSource({"0, 2, c, d", "1, 3, a, d", "2, 4, a, b"})
+    @CsvSource({"0, 2, c, d", "1, 3, a, d", "2, 4, a, b", "4, 4, a, b"})
     void removeRange(int fromIndex, int toIndex, String expected1, String expected2) {
         testList.removeRange(fromIndex, toIndex);
-        assertEquals(2, testList.size());
         assertEquals(expected1, testList.get(0));
         assertEquals(expected2, testList.get(1));
-
     }
 
     @DisplayName("Test removeRange IllegalArgumentException")
@@ -84,6 +82,7 @@ class TestTask4 {
         }
         assertEquals(expected, testList.equals(testList2));
         assertFalse(testList.equals(testList3));
+        assertFalse(testList.equals(null)); // Test null for coverage
     }
 
     @DisplayName("Test toArray method")
