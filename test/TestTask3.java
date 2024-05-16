@@ -21,12 +21,7 @@ class TestTask3 {
 
     @DisplayName("Test add element by index")
     @ParameterizedTest
-    @CsvSource({
-            "0, e, a",
-            "1, f, b",
-            "2, g, c",
-            "3, h, d"
-    })
+    @CsvSource({"0, e, a", "1, f, b", "2, g, c", "3, h, d"})
     void addIndex(int index, String element, String expected) {
         testList.add(4, "z");
         testList.add(index, element);
@@ -45,12 +40,7 @@ class TestTask3 {
 
     @DisplayName("Test remove by index")
     @ParameterizedTest
-    @CsvSource({
-            "0, a",
-            "1, b",
-            "2, c",
-            "3, d"
-    })
+    @CsvSource({"0, a", "1, b", "2, c", "3, d"})
     void removeIndex(int index, String expected) {
         assertEquals(expected, testList.remove(index));
         assertEquals(3, testList.size());
@@ -66,14 +56,7 @@ class TestTask3 {
 
     @DisplayName("Test remove by element")
     @ParameterizedTest
-    @CsvSource({
-            "a, true",
-            "b, true",
-            "c, true",
-            "d, true",
-            "e, false",
-            "f, false"
-    })
+    @CsvSource({"a, true", "b, true", "c, true", "d, true", "e, false", "f, false"})
     void removeElement(String element, boolean expected) {
         assertEquals(expected, testList.remove(element));
     }

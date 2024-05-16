@@ -1,11 +1,11 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TestTask2 {
     StringList testList;
@@ -21,44 +21,21 @@ class TestTask2 {
 
     @DisplayName("Test contains method")
     @ParameterizedTest
-    @CsvSource({
-            "a, true",
-            "b, true",
-            "c, true",
-            "d, true",
-            "e, false",
-            "f, false",
-            "g, false",
-            "h, false"
-    })
+    @CsvSource({"a, true", "b, true", "c, true", "d, true", "e, false", "f, false", "g, false", "h, false"})
     void contains(String element, boolean expected) {
         assertEquals(expected, testList.contains(element));
     }
 
     @DisplayName("Test indexOf index")
     @ParameterizedTest
-    @CsvSource({
-            "a, 0",
-            "b, 1",
-            "c, 2",
-            "d, 3",
-            "e, -1",
-            "f, -1",
-            "g, -1",
-            "h, -1"
-    })
+    @CsvSource({"a, 0", "b, 1", "c, 2", "d, 3", "e, -1", "f, -1", "g, -1", "h, -1"})
     void indexOf(String element, int expected) {
         assertEquals(expected, testList.indexOf(element));
     }
 
     @DisplayName("Test set method")
     @ParameterizedTest
-    @CsvSource({
-            "0, z, a",
-            "1, z, b",
-            "2, z, c",
-            "3, z, d"
-    })
+    @CsvSource({"0, z, a", "1, z, b", "2, z, c", "3, z, d"})
     void set(int index, String element, String expected) {
         assertEquals(expected, testList.set(index, element));
         assertEquals(element, testList.get(index));

@@ -71,7 +71,7 @@ public class StringList {
     /**
      * Inserts the specified element at the specified index in the list.
      *
-     * @param index the index at which the element is to be inserted
+     * @param index   the index at which the element is to be inserted
      * @param element the element to be inserted
      * @throws IllegalArgumentException if the index is invalid
      */
@@ -192,7 +192,7 @@ public class StringList {
     /**
      * Replaces the element at the specified position in this list with the specified element.
      *
-     * @param index index of the element to replace
+     * @param index   index of the element to replace
      * @param element element to be stored at the specified position
      * @return the element previously at the specified position
      * @throws IllegalArgumentException if the index is invalid
@@ -212,7 +212,7 @@ public class StringList {
      * {@code fromIndex}, inclusive, and {@code toIndex}, exclusive.
      *
      * @param fromIndex the start index (inclusive)
-     * @param toIndex the end index (exclusive)
+     * @param toIndex   the end index (exclusive)
      * @return a view of the specified range within this list
      * @throws IllegalArgumentException if the indices are out of order or invalid
      */
@@ -230,12 +230,12 @@ public class StringList {
         }
     }
 
-     /**
+    /**
      * Removes from this list all the elements whose index is between
      * fromIndex, inclusive, and toIndex, exclusive.
      *
      * @param fromIndex the start index (inclusive)
-     * @param toIndex the end index (exclusive)
+     * @param toIndex   the end index (exclusive)
      * @throws IllegalArgumentException if the indices are out of order or invalid
      */
     public void removeRange(int fromIndex, int toIndex) {
