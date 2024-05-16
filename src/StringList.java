@@ -190,6 +190,23 @@ public class StringList {
     }
 
     /**
+     * Returns the index of the last occurrence of the specified element in this list,
+     * or -1 if this list does not contain the element.
+     *
+     * @param element the element to search for
+     * @return the index of the last occurrence of the specified element in this list,
+     * or -1 if this list does not contain the element
+     */
+    public int lastIndexOf(String element) {
+        for (int i = size - 1; i >= 0; i--) {
+            if (elementData[i].equals(element)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    /**
      * Replaces the element at the specified position in this list with the specified element.
      *
      * @param index index of the element to replace
@@ -205,6 +222,80 @@ public class StringList {
             elementData[index] = element;
             return temp;
         }
+    }
+
+    /**
+     * Returns a view of the portion of this list between the specified {@code fromIndex},
+     * inclusive, and {@code toIndex}, exclusive.
+     *
+     * @param fromIndex the start index (inclusive)
+     * @param toIndex the end index (exclusive)
+     * @return a view of the specified range within this list
+     * @throws IllegalArgumentException if the indices are out of order or invalid
+     */
+    public StringList subList(int fromIndex, int toIndex) {
+        if (toIndex < fromIndex) {
+            throw new IllegalArgumentException("Indices out of order");
+        } else if (fromIndex < 0 || fromIndex >= size || toIndex > size) {
+            throw new IllegalArgumentException("Invalid index: " + fromIndex);
+        } else {
+            StringList subList = new StringList(toIndex - fromIndex);
+            for (int i = fromIndex; i < toIndex; i++) {
+                subList.add(elementData[i]);
+            }
+            return subList;
+        }
+    }
+
+     /**
+     * Removes from this list all the elements whose index is between fromIndex, inclusive, and toIndex, exclusive.
+     *
+     * @param fromIndex the start index (inclusive)
+     * @param toIndex the end index (exclusive)
+     * @throws IllegalArgumentException if the indices are out of order or invalid
+     */
+    public void removeRange(int fromIndex, int toIndex) {
+        if (toIndex < fromIndex) {
+            throw new IllegalArgumentException("Indices out of order");
+        } else if (fromIndex < 0 || fromIndex >= size || toIndex > size) {
+            throw new IllegalArgumentException("Invalid index: " + fromIndex);
+        } else {
+            for (int i = fromIndex; i < toIndex; i++) {
+                remove(fromIndex);
+            }
+        }
+    }
+
+    /**
+     * Compares the specified StringList with this list for equality.
+     * Two lists are defined to be equal if they contain the same elements in the same order.
+     *
+     * @param sl the StringList to compare
+     * @return true if the lists are equal, false otherwise
+     */
+    public boolean equals(StringList sl) {
+        if (size != sl.size()) {
+            return false;
+        }
+        for (int i = 0; i < size; i++) {
+            if (!elementData[i].equals(sl.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Returns an array containing all the elements in this list in proper sequence (from first to last element).
+     *
+     * @return an array containing all the elements in this list in proper sequence
+     */
+    public String[] toArray() {
+        String[] array = new String[size];
+        for (int i = 0; i < size; i++) {
+            array[i] = elementData[i];
+        }
+        return array;
     }
 
     /**
