@@ -1,8 +1,8 @@
 /**
  * Class that simulates a list for storing Strings.
  *
- * @author << your name goes here >>
- * @version << version number here >>
+ * @author Wang Shengfan
+ * @version 0.3
  */
 public class StringList {
 
@@ -33,6 +33,16 @@ public class StringList {
     }
 
     /**
+     * Constructor that creates an empty list to hold {@code size} Strings.
+     *
+     * @param volume the initial size of the list
+     */
+    public StringList(int volume) {
+        this.size = volume;
+        this.elementData = new String[volume];
+    }
+
+    /**
      * Increases the size of elementData by {@code GROW} and copies the old elements.
      */
     public void grow() {
@@ -56,6 +66,80 @@ public class StringList {
         elementData[size] = element;
         size++;
         return true;
+    }
+
+    /**
+     * Inserts the specified element at the specified index in the list.
+     *
+     * @param index the index at which the element is to be inserted
+     * @param element the element to be inserted
+     * @throws IllegalArgumentException if the index is invalid
+     */
+    public void add(int index, String element) {
+        if (index > size || index < 0) {
+            throw new IllegalArgumentException("Invalid index: " + index);
+        } else {
+            if (size >= elementData.length) {
+                grow();
+            }
+            for (int i = size; i > index; i--) {
+                elementData[i] = elementData[i - 1];
+            }
+            elementData[index] = element;
+            size++;
+        }
+    }
+
+    /**
+     * Removes the element at the specified position in the list.
+     *
+     * @param index the index of the element to remove
+     * @return the element that was removed from the list
+     * @throws IllegalArgumentException if the index is invalid
+     */
+    public String remove(int index) {
+        if (index >= size || index < 0) {
+            throw new IllegalArgumentException("Invalid index: " + index);
+        } else {
+            String removed = elementData[index];
+            for (int i = index; i < size - 1; i++) {
+                elementData[i] = elementData[i + 1];
+            }
+            size--;
+            return removed;
+        }
+    }
+
+    /**
+     * Removes the first occurrence of the specified element from the list.
+     *
+     * @param element the element to remove
+     * @return true if the list contained the element, false otherwise
+     */
+    public boolean remove(String element) {
+        if (contains(element)) {
+            remove(indexOf(element));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Removes all elements from the list.
+     */
+    public void clear() {
+        size = 0;
+        elementData = new String[size];
+    }
+
+    /**
+     * Returns true if the list contains no elements.
+     *
+     * @return true if the list contains no elements
+     */
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     /**
@@ -89,10 +173,12 @@ public class StringList {
     }
 
     /**
-     * Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
+     * Returns the index of the first occurrence of the specified element in this list,
+     * or -1 if this list does not contain the element.
      *
      * @param element the element to search for
-     * @return the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element
+     * @return the index of the first occurrence of the specified element in this list,
+     * or -1 if this list does not contain the element
      */
     public int indexOf(String element) {
         for (int i = 0; i < size; i++) {
