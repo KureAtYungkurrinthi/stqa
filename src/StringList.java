@@ -239,7 +239,7 @@ public class StringList {
         } else if (fromIndex < 0 || fromIndex >= size || toIndex > size) {
             throw new IllegalArgumentException("Invalid index: " + fromIndex);
         } else {
-            StringList subList = new StringList(toIndex - fromIndex);
+            StringList subList = new StringList();
             for (int i = fromIndex; i < toIndex; i++) {
                 subList.add(elementData[i]);
             }
@@ -248,7 +248,8 @@ public class StringList {
     }
 
      /**
-     * Removes from this list all the elements whose index is between fromIndex, inclusive, and toIndex, exclusive.
+     * Removes from this list all the elements whose index is between
+     * fromIndex, inclusive, and toIndex, exclusive.
      *
      * @param fromIndex the start index (inclusive)
      * @param toIndex the end index (exclusive)
@@ -286,7 +287,7 @@ public class StringList {
     }
 
     /**
-     * Returns an array containing all the elements in this list in proper sequence (from first to last element).
+     * Returns an array containing all the elements in this list in proper sequence.
      *
      * @return an array containing all the elements in this list in proper sequence
      */
@@ -318,9 +319,10 @@ public class StringList {
             return "List is empty: []";
         } else {
             String output = "Printing List: [";
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < size - 1; i++) {
                 output += elementData[i] + ", ";
             }
+            output += elementData[size - 1];
             return output + "]";
         }
     }

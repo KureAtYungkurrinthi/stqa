@@ -57,7 +57,8 @@ class TestTask1 {
         for (String element : elements) {
             expected += element + ", ";
         }
-        assertEquals(expected + "]", testList.toString());
+        expected = expected.substring(0, expected.length() - 2) + "]";
+        assertEquals(expected, testList.toString());
     }
 
     @DisplayName("Test empty toString method")
