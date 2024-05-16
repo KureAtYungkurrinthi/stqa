@@ -31,7 +31,7 @@ class TestTask2 {
             "g, false",
             "h, false"
     })
-    void get(String element, boolean expected) {
+    void contains(String element, boolean expected) {
         assertEquals(expected, testList.contains(element));
     }
 

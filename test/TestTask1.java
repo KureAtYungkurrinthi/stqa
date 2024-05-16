@@ -43,7 +43,7 @@ class TestTask1 {
 
     @DisplayName("Test get invalid index")
     @ParameterizedTest
-    @ValueSource(ints = {14, 15, 16, 17, 18})
+    @ValueSource(ints = {-1, 14, 15, 16, 17, 18})
     void illegalArgumentException(int index) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> testList.get(index));
         assertEquals("Invalid index: " + index, exception.getMessage());

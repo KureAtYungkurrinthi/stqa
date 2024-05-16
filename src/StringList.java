@@ -76,7 +76,7 @@ public class StringList {
      * @throws IllegalArgumentException if the index is invalid
      */
     public void add(int index, String element) {
-        if (index > size || index < 0) {
+        if (index >= size || index < 0) {
             throw new IllegalArgumentException("Invalid index: " + index);
         } else {
             if (size >= elementData.length) {
@@ -165,7 +165,7 @@ public class StringList {
      */
     public boolean contains(String element) {
         for (int i = 0; i < size; i++) {
-            if (elementData[i].equals(element)) {
+            if (elementData[i] != null && elementData[i].equals(element)) {
                 return true;
             }
         }
