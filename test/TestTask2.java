@@ -61,6 +61,7 @@ class TestTask2 {
     })
     void set(int index, String element, String expected) {
         assertEquals(expected, testList.set(index, element));
+        assertEquals(element, testList.get(index));
     }
 
     @DisplayName("Test set method with invalid index")
@@ -73,7 +74,7 @@ class TestTask2 {
 
     @DisplayName("Test size method")
     @ParameterizedTest
-    @ValueSource(ints = {0, 1, 2, 3, 4})
+    @ValueSource(ints = {1, 2, 3, 4, 5})
     void size(int addSize) {
         for (int i = 0; i < addSize; i++) {
             testList.add("z");

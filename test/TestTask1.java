@@ -1,4 +1,6 @@
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -64,7 +66,7 @@ class TestTask1 {
     @DisplayName("Test empty toString method")
     @Test
     void testEmptyToString() {
-        testList = new StringList();
+        testList.clear();
         assertEquals("List is empty: []", testList.toString());
     }
 }

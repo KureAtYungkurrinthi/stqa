@@ -10,22 +10,34 @@ import static org.junit.jupiter.api.Assertions.*;
 class TestTask3 {
     StringList testList;
 
-    @DisplayName("Test int constructor and void add")
     @BeforeEach
-    @Test
-    void add() {
+    void setUp() {
         testList = new StringList(5);
-        int[] testIndexArray = {0, 1, 2, 3, 4};
-        String[] testStringArray = {"a", "b", "c", "d", "e"};
-        for (int i = 0; i < testIndexArray.length; i++) {
-            testList.add(testIndexArray[i], testStringArray[i]);
-            assertEquals(testStringArray[i], testList.get(i));
+        String[] elements = {"a", "b", "c", "d"};
+        for (String element : elements) {
+            testList.add(element);
         }
+    }
+
+    @DisplayName("Test add element by index")
+    @ParameterizedTest
+    @CsvSource({
+            "0, e, a",
+            "1, f, b",
+            "2, g, c",
+            "3, h, d"
+    })
+    void addIndex(int index, String element, String expected) {
+        testList.add(4, "z");
+        testList.add(index, element);
+        assertEquals(6, testList.size());
+        assertEquals(element, testList.get(index));
+        assertEquals(expected, testList.get(index + 1));
     }
 
     @DisplayName("Test add IllegalArgumentException")
     @ParameterizedTest
-    @ValueSource(ints = {10, -1})
+    @ValueSource(ints = {5, -1})
     void addIllegalArgumentException(int index) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> testList.add(index, "z"));
         assertEquals("Invalid index: " + index, exception.getMessage());
@@ -37,16 +49,16 @@ class TestTask3 {
             "0, a",
             "1, b",
             "2, c",
-            "3, d",
-            "4, e"
+            "3, d"
     })
     void removeIndex(int index, String expected) {
         assertEquals(expected, testList.remove(index));
+        assertEquals(3, testList.size());
     }
 
     @DisplayName("Test remove IllegalArgumentException by index")
     @ParameterizedTest
-    @ValueSource(ints = {-1, 10})
+    @ValueSource(ints = {-1, 4})
     void removeIllegalArgumentException(int index) {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> testList.remove(index));
         assertEquals("Invalid index: " + index, exception.getMessage());
@@ -59,7 +71,7 @@ class TestTask3 {
             "b, true",
             "c, true",
             "d, true",
-            "e, true",
+            "e, false",
             "f, false"
     })
     void removeElement(String element, boolean expected) {

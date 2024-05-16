@@ -2,7 +2,7 @@
  * Class that simulates a list for storing Strings.
  *
  * @author Wang Shengfan
- * @version 0.3
+ * @version 0.4
  */
 public class StringList {
 
@@ -33,13 +33,13 @@ public class StringList {
     }
 
     /**
-     * Constructor that creates an empty list to hold {@code size} Strings.
+     * Constructor that creates an empty list to hold {@code capacity} Strings.
      *
-     * @param volume the initial size of the list
+     * @param capacity the initial size of the list
      */
-    public StringList(int volume) {
-        this.size = volume;
-        this.elementData = new String[volume];
+    public StringList(int capacity) {
+        this.size = 0;
+        this.elementData = new String[capacity];
     }
 
     /**
@@ -76,7 +76,7 @@ public class StringList {
      * @throws IllegalArgumentException if the index is invalid
      */
     public void add(int index, String element) {
-        if (index >= size || index < 0) {
+        if (index > size || index < 0) {
             throw new IllegalArgumentException("Invalid index: " + index);
         } else {
             if (size >= elementData.length) {
@@ -126,23 +126,6 @@ public class StringList {
     }
 
     /**
-     * Removes all elements from the list.
-     */
-    public void clear() {
-        size = 0;
-        elementData = new String[size];
-    }
-
-    /**
-     * Returns true if the list contains no elements.
-     *
-     * @return true if the list contains no elements
-     */
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    /**
      * Returns the element at the specified position in this list.
      *
      * @param index index of the element to return
@@ -165,7 +148,7 @@ public class StringList {
      */
     public boolean contains(String element) {
         for (int i = 0; i < size; i++) {
-            if (elementData[i] != null && elementData[i].equals(element)) {
+            if (elementData[i].equals(element)) {
                 return true;
             }
         }
@@ -225,8 +208,8 @@ public class StringList {
     }
 
     /**
-     * Returns a view of the portion of this list between the specified {@code fromIndex},
-     * inclusive, and {@code toIndex}, exclusive.
+     * Returns a view of the portion of this list between the specified
+     * {@code fromIndex}, inclusive, and {@code toIndex}, exclusive.
      *
      * @param fromIndex the start index (inclusive)
      * @param toIndex the end index (exclusive)
@@ -237,7 +220,7 @@ public class StringList {
         if (toIndex < fromIndex) {
             throw new IllegalArgumentException("Indices out of order");
         } else if (fromIndex < 0 || fromIndex >= size || toIndex > size) {
-            throw new IllegalArgumentException("Invalid index: " + fromIndex);
+            throw new IllegalArgumentException("Invalid index");
         } else {
             StringList subList = new StringList();
             for (int i = fromIndex; i < toIndex; i++) {
@@ -259,7 +242,7 @@ public class StringList {
         if (toIndex < fromIndex) {
             throw new IllegalArgumentException("Indices out of order");
         } else if (fromIndex < 0 || fromIndex >= size || toIndex > size) {
-            throw new IllegalArgumentException("Invalid index: " + fromIndex);
+            throw new IllegalArgumentException("Invalid index");
         } else {
             for (int i = fromIndex; i < toIndex; i++) {
                 remove(fromIndex);
@@ -277,13 +260,14 @@ public class StringList {
     public boolean equals(StringList sl) {
         if (size != sl.size()) {
             return false;
-        }
-        for (int i = 0; i < size; i++) {
-            if (!elementData[i].equals(sl.get(i))) {
-                return false;
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (!elementData[i].equals(sl.get(i))) {
+                    return false;
+                }
             }
+            return true;
         }
-        return true;
     }
 
     /**
@@ -297,6 +281,22 @@ public class StringList {
             array[i] = elementData[i];
         }
         return array;
+    }
+
+    /**
+     * Removes all elements from the list.
+     */
+    public void clear() {
+        size = 0;
+    }
+
+    /**
+     * Returns true if the list contains no elements.
+     *
+     * @return true if the list contains no elements
+     */
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     /**
