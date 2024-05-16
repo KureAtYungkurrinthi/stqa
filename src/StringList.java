@@ -66,7 +66,7 @@ public class StringList {
      * @throws IllegalArgumentException if the index is invalid
      */
     public String get(int index) {
-        if (index >= size) {
+        if (index >= size || index < 0) {
             throw new IllegalArgumentException("Invalid index: " + index);
         } else {
             return elementData[index];
@@ -112,7 +112,7 @@ public class StringList {
      * @throws IllegalArgumentException if the index is invalid
      */
     public String set(int index, String element) {
-        if (index >= size) {
+        if (index >= size || index < 0) {
             throw new IllegalArgumentException("Invalid index: " + index);
         } else {
             String temp = elementData[index];
